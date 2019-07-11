@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 
 import Carousel from 'react-bootstrap/Carousel';
 
+import logo from './images/LNU.jpg';
+import logo2 from './images/LNU2.jpg';
+import logo3 from './images/LNU3.jpg';
+
 class ControlledCarousel extends Component {
     constructor(props, context) {
         super(props, context);
@@ -20,7 +24,6 @@ class ControlledCarousel extends Component {
             direction: e.direction,
         });
     }
-
     render() {
         const { index, direction } = this.state;
 
@@ -33,7 +36,7 @@ class ControlledCarousel extends Component {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src="holder.js/800x400?text=First slide&bg=373940"
+                        src={logo}
                         alt="First slide"
                     />
                     <Carousel.Caption>
@@ -44,7 +47,7 @@ class ControlledCarousel extends Component {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src="holder.js/800x400?text=Second slide&bg=282c34"
+                        src={logo2}
                         alt="Third slide"
                     />
 
@@ -56,7 +59,7 @@ class ControlledCarousel extends Component {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src="holder.js/800x400?text=Third slide&bg=20232a"
+                        src={logo3}
                         alt="Third slide"
                     />
 

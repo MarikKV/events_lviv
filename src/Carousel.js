@@ -28,6 +28,8 @@ class ControlledCarousel extends Component {
         const { index, direction } = this.state;
 
         return (
+            <div className="container w-50 mt-3">
+
             <Carousel
                 activeIndex={index}
                 direction={direction}
@@ -71,6 +73,7 @@ class ControlledCarousel extends Component {
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>
+            </div>
         );
     }
 }

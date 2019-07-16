@@ -3,21 +3,27 @@ import React, {Component} from 'react';
 import './App.css';
 import ControlledCarousel from './Carousel';
 import Header from './Header';
-import CardEvent from './CardEvent';
+import Categories from './Categories';
+import {BrowserRouter, Route} from "react-router-dom";
+import ThisWeek from "./ThisWeek";
 
 
 class App extends Component{
   render(){
     return (
-        <div className="App">
-          <Header/>
+        <BrowserRouter>
+            <div className="App">
+              <Header/>
 
-          <div className="container w-50 mt-3">
-              <ControlledCarousel/>
-          </div>
+              <Route path='/home' component={ControlledCarousel} />
+              <Route path='/home' component={ThisWeek} />
 
-          <CardEvent />
-        </div>
+              <Route path='/categories' component={Categories} />
+
+              <Route path='/thisWeek' component={ThisWeek} />
+
+            </div>
+        </BrowserRouter>
     );
   }
 }

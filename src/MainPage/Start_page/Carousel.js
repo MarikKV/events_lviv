@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 
 import Carousel from 'react-bootstrap/Carousel';
 
-import logo from './images/LNU.jpg';
-import logo2 from './images/LNU2.jpg';
-import logo3 from './images/LNU3.jpg';
+import logo from '../../images/LNU.jpg';
+import logo2 from '../../images/LNU2.jpg';
+import logo3 from '../../images/LNU3.jpg';
 
 class ControlledCarousel extends Component {
     constructor(props, context) {
@@ -28,7 +28,7 @@ class ControlledCarousel extends Component {
         const { index, direction } = this.state;
 
         return (
-            <div className="container w-50 mt-3">
+            <div className="container w-50 mt-3 mb-5">
 
             <Carousel
                 activeIndex={index}

@@ -6,9 +6,9 @@ import Category from "./Category";
 class Categories extends Component {
     render() {
         return (
-            <div className="container w-100 mt-3">
-                <Category />
-                <Category />
+            <div className="container mt-3">
+                <h1>What are you interested in?</h1>
+                <br />
                 <Category />
             </div>
         );

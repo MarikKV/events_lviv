@@ -7,18 +7,17 @@ import s from './CardEvent.module.css';
 
 class CardEvent extends React.Component {
     constructor(props) {
-        console.log('i constructed')
         super(props);
         this.state = {
             error: null,
             isLoaded: false,
             items: [],
-            myvar: 10
+            moreInfo: false,
+            cardIndex: 1
         };
     }
     componentDidMount() {
-        console.log('i didMount');
-        fetch('https://jsonplaceholder.typicode.com/users')
+        fetch('https://api.gastroli.ua/v2/events/filter?locale=uk&public_key=3638eeb29dff9f8bb81f72e805769df0&filter%5Bcity_id%5D=1&limit=12&offset=24')
             .then(res => res.json())
             .then(
                 (json) => {
@@ -36,7 +35,7 @@ class CardEvent extends React.Component {
             );
     }
     render() {
-        let {error, isLoaded, items} = this.state;
+        let {error, isLoaded, items, moreInfo} = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -44,19 +43,20 @@ class CardEvent extends React.Component {
         } else {
             return (
                 <div>
-                    {items.map(item => (
-                        <div className={s.card}>
-                            <Card key={item.id}>
+                    {console.log(this.state.items)}
+                    {items.events.map(item => (
+                        <div className={s.card} key={item.id}>
+                            <Card>
                                 <Card.Img variant="top"
                                           src="https://24tv.ua/resources/photos/news/610x344_DIR/201712/907363.jpg?201809152046"/>
                                 <Card.Body>
                                     <Card.Title>{item.name}</Card.Title>
                                     <Card.Text>
-                                        {item.email}
-                                        {item.phone}
-                                        {item.email}
+                                        {moreInfo && item.id==this.state.cardIndex ? item.name + item.phone + item.email : item.name}
                                     </Card.Text>
-                                    <Button variant="primary">Read more</Button>
+                                    <Button variant="primary" onClick={() => this.readMore(item.id)}>
+                                        {moreInfo && item.id==this.state.cardIndex ? 'Read less' : 'Read more'}
+                                    </Button>
                                 </Card.Body>
                             </Card>
                         </div>
@@ -64,6 +64,20 @@ class CardEvent extends React.Component {
                 </div>
             )
         }
+    }
+    readMore = (x) => {
+        console.log('clicked');
+        console.log(x);
+        if(this.state.cardIndex == x){
+        this.setState({
+            moreInfo : !this.state.moreInfo,
+            cardIndex: x
+        })}
+        else {
+            this.setState({
+                moreInfo : true,
+                cardIndex: x
+            })}
     }
 }
 

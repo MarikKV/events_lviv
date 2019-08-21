@@ -4,6 +4,9 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import Container from 'react-bootstrap/Container';
 import Nav from "react-bootstrap/Nav";
 
+import s from './Category.module.css';
+
+
 class Category extends React.Component {
     constructor(props) {
         super(props)
@@ -15,7 +18,7 @@ class Category extends React.Component {
     }
 
     componentDidMount() {
-        fetch('https://jsonplaceholder.typicode.com/users')
+        fetch('https://api.gastroli.ua/v2/events/filter?locale=uk&public_key=3638eeb29dff9f8bb81f72e805769df0&filter%5Bcity_id%5D=1&limit=12&offset=24')
             .then(res => res.json())
             .then(json => {
                     this.setState({
@@ -40,17 +43,17 @@ class Category extends React.Component {
         } else {
             return (
                 <div>
-                    {items.map(item => (
-                        <Nav.Link href={'/categories/' + item.id} key={item.id}>
-                            <Jumbotron fluid key={item.id}>
+                    {items.event_categories.map(item => (
+                            <Jumbotron fluid key={item.name} className={"col-sm-5 float-left ml-5"} >
                                 <Container>
-                                    <h1>{item.name}</h1>
+                                    <Nav.Link href={'/categories/' + item.name} key={item.name} >
+                                        <h1 className={item.name.length >=12 ? "h2" : "h1"}>{item.name}</h1>
+                                    </Nav.Link>
                                     <p>
-                                        {item.email} <br/> {item.phone} <br/> {item.website}
+                                        Кількість подій: {item.events_count}
                                     </p>
                                 </Container>
                             </Jumbotron>
-                        </Nav.Link>
                     ))}
                 </div>
             );

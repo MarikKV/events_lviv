@@ -47,15 +47,18 @@ class CardEvent extends React.Component {
                     {console.log(this.state.items)}
                     {items.events.map(item => (
                         <div className={s.card} key={item.id}>
-                            <Card className={moreInfo && this.state.open ? s.card_w : s.card_wb}>
+                            <Card>
                                 <Card.Img variant="top"
                                           src={item.new_promo_image_url}/>
                                 <Card.Body>
                                     <Card.Title>{item.name}</Card.Title>
                                     <Card.Text>
                                         {moreInfo && item.id==this.state.cardIndex ?
-                                            "Час проведення: "+item.event_start + "Місце проведення: "+item.venue.short_name :
-                                            "Час проведення: "+item.event_start}
+                                            "Дата проведення: \n"+item.event_start.substring(5, 10)+
+                                            "Час проведення: \n"+item.event_start.substring(11, 16)+
+                                            "Місце проведення: \n"+item.venue.short_name:
+
+                                            "Дата проведення: "+item.event_start.substring(5, 10)}
                                     </Card.Text>
                                     <Button variant="primary" onClick={() => this.readMore(item.id)}>
                                         {moreInfo && item.id==this.state.cardIndex ? 'Read less' : 'Read more'}

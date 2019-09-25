@@ -44,16 +44,18 @@ class Category extends React.Component {
             return (
                 <div>
                     {items.event_categories.map(item => (
-                            <Jumbotron fluid key={item.name} className={"col-sm-5 float-left ml-5"} >
+                        <div className={s.catH} key={item.name}>
+                            <Jumbotron fluid key={item.name}>
                                 <Container>
                                     <Nav.Link href={'/categories/' + item.name} key={item.name} >
-                                        <h1 className={item.name.length >=12 ? "h2" : "h1"}>{item.name}</h1>
+                                        <h1>{item.name}</h1>
                                     </Nav.Link>
                                     <p>
                                         Кількість подій: {item.events_count}
                                     </p>
                                 </Container>
                             </Jumbotron>
+                        </div>
                     ))}
                 </div>
             );

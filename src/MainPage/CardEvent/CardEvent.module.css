@@ -2,4 +2,11 @@
     width: 15rem;
     float: left;
     margin: 0 0 2rem 2rem;
+    min-height: 450px;
+}
+.card_w{
+    width: 400px;
+}
+.card_wb{
+
 }

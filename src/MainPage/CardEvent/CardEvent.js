@@ -13,7 +13,8 @@ class CardEvent extends React.Component {
             isLoaded: false,
             items: [],
             moreInfo: false,
-            cardIndex: 1
+            cardIndex: 1,
+            open: false
         };
     }
     componentDidMount() {
@@ -46,16 +47,19 @@ class CardEvent extends React.Component {
                     {console.log(this.state.items)}
                     {items.events.map(item => (
                         <div className={s.card} key={item.id}>
-                            <Card>
+                            <Card className={moreInfo && this.state.open ? s.card_w : s.card_wb}>
                                 <Card.Img variant="top"
-                                          src="https://24tv.ua/resources/photos/news/610x344_DIR/201712/907363.jpg?201809152046"/>
+                                          src={item.new_promo_image_url}/>
                                 <Card.Body>
                                     <Card.Title>{item.name}</Card.Title>
                                     <Card.Text>
-                                        {moreInfo && item.id==this.state.cardIndex ? item.name + item.phone + item.email : item.name}
+                                        {moreInfo && item.id==this.state.cardIndex ?
+                                            "Час проведення: "+item.event_start + "Місце проведення: "+item.venue.short_name :
+                                            "Час проведення: "+item.event_start}
                                     </Card.Text>
                                     <Button variant="primary" onClick={() => this.readMore(item.id)}>
                                         {moreInfo && item.id==this.state.cardIndex ? 'Read less' : 'Read more'}
+                                        {console.log(item)}
                                     </Button>
                                 </Card.Body>
                             </Card>
@@ -71,12 +75,13 @@ class CardEvent extends React.Component {
         if(this.state.cardIndex == x){
         this.setState({
             moreInfo : !this.state.moreInfo,
-            cardIndex: x
+            cardIndex: x,
         })}
         else {
             this.setState({
                 moreInfo : true,
-                cardIndex: x
+                cardIndex: x,
+                open: !this.state.open
             })}
     }
 }

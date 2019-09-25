@@ -7,13 +7,7 @@ class StartPage extends Component {
         return (
             <div className="container">
                 <div style={{width: '100%', float: 'right'}}>
-                    <h1>Popular events in your city this week</h1>
-                    <br />
-                    <CardEvent />
-                </div>
-
-                <div style={{width: '100%', float: 'right'}}>
-                    <h1>Other events in your city</h1>
+                    <h1>Цікаві події у вашому місті</h1>
                     <br />
                     <CardEvent />
                 </div>

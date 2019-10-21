@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Jumbotron from 'react-bootstrap/Jumbotron';
+import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
 import Nav from "react-bootstrap/Nav";
 
@@ -43,23 +43,20 @@ class Category extends React.Component {
         } else {
             return (
                 <div>
-                    {items.event_categories.map(item => (
-                        <div className={s.catH} key={item.name}>
-                            <Jumbotron fluid key={item.name}>
-                                <Container>
-                                    <Nav.Link href={'/categories/' + item.name} key={item.name} >
-                                        <h1>{item.name}</h1>
-                                    </Nav.Link>
-                                    <p>
-                                        Кількість подій: {item.events_count}
-                                    </p>
-                                </Container>
-                            </Jumbotron>
-                        </div>
-                    ))}
+                    <ListGroup as="ul" defaultActiveKey="#link1">
+                        {items.event_categories.map(item => (
+                            <ListGroup.Item as="li" key={item.name} className={s.list} onClick={() => this.alertClicked(item.name)}>
+                                {item.name}: {item.events_count}
+                            </ListGroup.Item>
+                        ))}
+                        {console.log(items)}
+                    </ListGroup>
                 </div>
             );
         }
+    }
+    alertClicked(x) {
+        console.log(x);
     }
 }
 

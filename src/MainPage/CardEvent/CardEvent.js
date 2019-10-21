@@ -36,7 +36,7 @@ class CardEvent extends React.Component {
             );
     }
     render() {
-        let {error, isLoaded, items, moreInfo} = this.state;
+        let {error, isLoaded, items} = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -53,16 +53,14 @@ class CardEvent extends React.Component {
                                 <Card.Body>
                                     <Card.Title>{item.name}</Card.Title>
                                     <Card.Text>
-                                        {moreInfo && item.id==this.state.cardIndex ?
-                                            "Дата проведення: \n"+item.event_start.substring(5, 10)+
-                                            "Час проведення: \n"+item.event_start.substring(11, 16)+
-                                            "Місце проведення: \n"+item.venue.short_name:
-
-                                            "Дата проведення: "+item.event_start.substring(5, 10)}
+                                        {item.venue.short_name}
+                                        <br/>
+                                        {item.event_start.substring(0, 10)}
+                                        <br/>
+                                        {item.event_start.substring(11, 16)}
                                     </Card.Text>
-                                    <Button variant="primary" onClick={() => this.readMore(item.id)}>
-                                        {moreInfo && item.id==this.state.cardIndex ? 'Read less' : 'Read more'}
-                                        {console.log(item)}
+                                    <Button variant="primary">
+                                        Read more
                                     </Button>
                                 </Card.Body>
                             </Card>
@@ -71,21 +69,6 @@ class CardEvent extends React.Component {
                 </div>
             )
         }
-    }
-    readMore = (x) => {
-        console.log('clicked');
-        console.log(x);
-        if(this.state.cardIndex == x){
-        this.setState({
-            moreInfo : !this.state.moreInfo,
-            cardIndex: x,
-        })}
-        else {
-            this.setState({
-                moreInfo : true,
-                cardIndex: x,
-                open: !this.state.open
-            })}
     }
 }
 

@@ -58,7 +58,7 @@ class ControlledCarousel extends Component {
                 onSelect={this.handleSelect}
             >
                 {items.events.map(item => (
-                <Carousel.Item key={item.name}>
+                <Carousel.Item key={item.name+item.event_start}>
                     <img
                         className="d-block w-100"
                         src={item.promo_favorite_image_url}

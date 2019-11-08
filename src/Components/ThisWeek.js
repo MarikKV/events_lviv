@@ -85,7 +85,7 @@ class ThisWeek extends Component {
         } else {
         return (
             <div className="container p-5">
-            <h1 className="text-center py-5">Places</h1>
+            <h1 className="text-center py-5">Усі події у місті Львів</h1>
             <div className="row">
                 <main className="col-sm-9 events_block">
                 {items.events.map(item => (

@@ -10,9 +10,9 @@ class Header extends Component {
             <Navbar bg="dark" variant="dark">
                 <Navbar.Brand href="/home">EventsLviv</Navbar.Brand>
                 <Nav className="mr-auto">
-                    <Nav.Link href="/home">Головна</Nav.Link>
+                    <Nav.Link href="/home">Головна</Nav.Link> 
+                    <Nav.Link href="/thisWeek">Усі події</Nav.Link>
                     <Nav.Link href="/categories">Категорії</Nav.Link>
-                    <Nav.Link href="/thisWeek">Цього тижня</Nav.Link>
                 </Nav>
             </Navbar>
         );

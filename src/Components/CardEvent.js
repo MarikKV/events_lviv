@@ -3,6 +3,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
+import l from '../ModuleStyles/Loader.module.css';
 import s from '../ModuleStyles/CardEvent.module.css';
 
 class CardEvent extends React.Component {
@@ -40,7 +41,7 @@ class CardEvent extends React.Component {
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
-            return <div>Loading...</div>;
+            return <div className={l.lds_facebook}><div></div><div></div><div></div></div>;
         } else {
             return (
                 <div>

@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 
 import Carousel from 'react-bootstrap/Carousel';
 
-import logo from '../../images/LNU.jpg';
-import logo2 from '../../images/LNU2.jpg';
-import logo3 from '../../images/LNU3.jpg';
+import logo from '../images/LNU.jpg';
+import logo2 from '../images/LNU2.jpg';
+import logo3 from '../images/LNU3.jpg';
 
 class ControlledCarousel extends Component {
     constructor(props, context) {

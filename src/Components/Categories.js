@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import Category from "./Category";
+import Places from "./Places";
 
 
 class Categories extends Component {
@@ -10,6 +11,7 @@ class Categories extends Component {
                 <h1>Що вас цікавить?</h1>
                 <br />
                 <Category />
+                <Places />
             </div>
         );
     }

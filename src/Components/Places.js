@@ -1,13 +1,11 @@
 import React from 'react';
 
 import ListGroup from 'react-bootstrap/ListGroup';
-import Container from 'react-bootstrap/Container';
-import Nav from "react-bootstrap/Nav";
-
-import s from './Category.module.css';
+import s from '../ModuleStyles/Category.module.css';
+import l from '../ModuleStyles/Loader.module.css';
 
 
-class Category extends React.Component {
+class Places extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -39,14 +37,15 @@ class Category extends React.Component {
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
-            return <div>Loading...</div>;
+            return <div className={l.lds_facebook}><div></div><div></div><div></div></div>;
         } else {
             return (
-                <div>
+                <div className={s.block_info}>
+                    <h2>Заклади</h2>
                     <ListGroup as="ul" defaultActiveKey="#link1">
-                        {items.event_categories.map(item => (
-                            <ListGroup.Item as="li" key={item.name} className={s.list} onClick={() => this.alertClicked(item.name)}>
-                                {item.name}: {item.events_count}
+                        {items.venues.map(item => (
+                            <ListGroup.Item as="li" key={item.short_name} className={s.list} onClick={() => this.alertClicked(item.name)}>
+                                {item.short_name}
                             </ListGroup.Item>
                         ))}
                         {console.log(items)}
@@ -60,4 +59,4 @@ class Category extends React.Component {
     }
 }
 
-export default Category;
+export default Places;

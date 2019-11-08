@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import CardEvent from "../CardEvent/CardEvent";
+import CardEvent from "./CardEvent";
 
 class StartPage extends Component {
     render() {

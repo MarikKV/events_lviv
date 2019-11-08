@@ -2,14 +2,13 @@ import React, {Component} from 'react';
 
 import {BrowserRouter, Route} from "react-router-dom";
 
-//import logo from './logo.svg';
-import '../App.css';
-import ControlledCarousel from '../MainPage/Start_page/Carousel';
-import Header from '../MainPage/Menu/Header';
-import Categories from '../MainPage/Menu/Categories';
-import ThisWeek from "../MainPage/Menu/ThisWeek";
-import StartPage from "../MainPage/Start_page/StartPage";
-import Footer from "../MainPage/FooterComponent/Footer";
+import './App.css';
+import ControlledCarousel from './Components/Carousel';
+import Header from './Components/Header';
+import Categories from './Components/Categories';
+import ThisWeek from "./Components/ThisWeek";
+import StartPage from "./Components/StartPage";
+import Footer from "./Components/Footer";
 
 
 class App extends Component {

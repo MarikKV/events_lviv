@@ -3,7 +3,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-import s from './CardEvent.module.css';
+import s from '../ModuleStyles/CardEvent.module.css';
 
 class CardEvent extends React.Component {
     constructor(props) {

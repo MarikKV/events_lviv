@@ -90,6 +90,7 @@ class ThisWeek extends Component {
                 <main className="col-sm-9 events_block">
                 {items.events.map(item => (
                     <div className="row border p-3 rounded m-3" key={item.id}>
+                        
                         <div className="col-md-5">
                             <img src={item.new_promo_image_url} className="img-fluid rounded"  alt="" />
                         </div>

@@ -1,21 +1,39 @@
 import React, {Component} from 'react';
 
 import Carousel from 'react-bootstrap/Carousel';
+import l from '../ModuleStyles/Loader.module.css';
+import s from '../ModuleStyles/Category.module.css';
 
-import logo from '../images/LNU.jpg';
-import logo2 from '../images/LNU2.jpg';
-import logo3 from '../images/LNU3.jpg';
 
 class ControlledCarousel extends Component {
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
 
         this.handleSelect = this.handleSelect.bind(this);
 
         this.state = {
             index: 0,
+            error: null,
             direction: null,
+            isLoaded: false,
+            items: []
         };
+    }
+    componentDidMount() {
+        fetch('https://api.gastroli.ua/v2/events/filter?locale=uk&public_key=3638eeb29dff9f8bb81f72e805769df0&filter%5Bcity_id%5D=1&limit=3&offset=24')
+            .then(res => res.json())
+            .then(json => {
+                    this.setState({
+                        isLoaded: true,
+                        items: json,
+                    })
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                })
     }
 
     handleSelect(selectedIndex, e) {
@@ -25,8 +43,12 @@ class ControlledCarousel extends Component {
         });
     }
     render() {
-        const { index, direction } = this.state;
-
+        const { index, direction, items, error, isLoaded } = this.state;
+        if (error) {
+            return <div>Error: {error.message}</div>;
+        } else if (!isLoaded) {
+            return <div className={l.lds_facebook}><div></div><div></div><div></div></div>;
+        } else {
         return (
             <div className="container w-50 mt-3 mb-5">
 
@@ -35,47 +57,24 @@ class ControlledCarousel extends Component {
                 direction={direction}
                 onSelect={this.handleSelect}
             >
-                <Carousel.Item>
+                {items.events.map(item => (
+                <Carousel.Item key={item.name}>
                     <img
                         className="d-block w-100"
-                        src={logo}
+                        src={item.promo_favorite_image_url}
                         alt="First slide"
                     />
                     <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <h3 className={s.background_for_text}>{item.name}</h3><br />
+                    <p className={s.background_for_text}>{item.venue.short_name}</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={logo2}
-                        alt="Third slide"
-                    />
-
-                    <Carousel.Caption>
-                        <h3>Second slide label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={logo3}
-                        alt="Third slide"
-                    />
-
-                    <Carousel.Caption>
-                        <h3>Third slide label</h3>
-                        <p>
-                            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                        </p>
-                    </Carousel.Caption>
-                </Carousel.Item>
+                ))}
             </Carousel>
             </div>
         );
     }
+}
 }
 
 export default ControlledCarousel;
